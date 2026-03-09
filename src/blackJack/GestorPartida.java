@@ -21,12 +21,16 @@ public class GestorPartida {
 		boolean j1Sigue= false;
 		boolean j2Sigue= false;
 		String opcion;
+		String mensaje1;
+		String mensaje2;
 		
 		j1= new Jugador(cs.leerTexto("Nombre del jugador 1: "));
 		j2= new Jugador(cs.leerTexto("Nombre del jugador 2: "));
 		
+		mensaje1= j1.getNombre() + ", ¿Quieres carta (C) o quieres plantarte (P)";
+		mensaje2= j2.getNombre() + ", ¿Quieres carta (C) o quieres plantarte (P)";
 		numCartas= cs.leerEntero("¿Cuantás cartas queréis para empezar? (1 o 2)", 1, 2);
-		baraja.barajar();
+		baraja.barajar(); 
 		
 		for(int i= 0; i< numCartas; i++) {
 			j1.darCarta(baraja.repartir());
@@ -38,9 +42,10 @@ public class GestorPartida {
 			cs.escribirMensaje("\n--- RONDA " + numRonda + " ---");
 			cs.escribirMensaje(j1);
 			cs.escribirMensaje(j2); 
+            System.out.println();
             
             if(!j1.isPlantado() && !j1.pasado()) {
-            	opcion= cs.leerOpcion("¿Quieres carta (C) o quieres plantarte (P)", "C", "P");
+            	opcion= cs.leerOpcion(mensaje1, "C", "P");
             	if(opcion.equals("C")) {
             		j1Sigue= true;
             		
@@ -50,7 +55,7 @@ public class GestorPartida {
             }
 
             if(!j2.isPlantado() && !j2.pasado()) {
-            	opcion= cs.leerOpcion("¿Quieres carta (C) o quieres plantarte (P)", "C", "P");
+            	opcion= cs.leerOpcion(mensaje2, "C", "P"); 
             	if(opcion.equals("C")) {
             		j2Sigue= true;
             		

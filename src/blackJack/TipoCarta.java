@@ -14,4 +14,16 @@ public enum TipoCarta {
     public int getValorBase() {
         return valor; 
     }
+    
+    @Override
+    public String toString() {
+        return switch (this) {
+            case AS -> "A";
+            case JOTA -> "J";
+            case REINA -> "Q";
+            case REY -> "K";
+            case DIEZ -> "10";
+            default -> String.valueOf(this.valor); // Para 2 al 9, usa su valor
+        };
+    }
 }
