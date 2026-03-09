@@ -2,4 +2,110 @@ package blackJack;
 
 public class GestorPartida {
 
+	private Jugador j1;
+	private Jugador j2;
+	private Baraja baraja;
+	private Consola cs;
+	
+	public GestorPartida() {
+        this.cs = new Consola();
+        this.baraja = new Baraja();
+    }
+	
+	public void partida() {
+		int numCartas;
+		int numRonda= 1;
+		boolean j1Sigue= false;
+		boolean j2Sigue= false;
+		String opcion;
+		
+		j1= new Jugador(cs.leerTexto("Nombre del jugador 1: "));
+		j2= new Jugador(cs.leerTexto("Nombre del jugador 2: "));
+		
+		numCartas= cs.leerEntero("¿Cuantás cartas queréis para empezar? (1 o 2)", 1, 2);
+		baraja.barajar();
+		
+		for(int i= 0; i< numCartas; i++) {
+			j1.darCarta(baraja.repartir());
+			j2.darCarta(baraja.repartir());
+		}
+		
+		while(continuar()) {
+			cs.escribirMensaje("\n--- RONDA " + numRonda + " ---");
+			cs.escribirMensaje(j1);
+			cs.escribirMensaje(j2); 
+            
+            if(!j1.isPlantado() && !j1.pasado()) {
+            	opcion= cs.leerOpcion("¿Quieres carta (C) o quieres plantarte (P)", "C", "P");
+            	if(opcion.equals("C")) {
+            		j1Sigue= true;
+            		
+            	} else {
+            		j1.plantarse();
+            	}
+            }
+
+            if(!j2.isPlantado() && !j2.pasado()) {
+            	opcion= cs.leerOpcion("¿Quieres carta (C) o quieres plantarte (P)", "C", "P");
+            	if(opcion.equals("C")) {
+            		j2Sigue= true;
+            		
+            	} else {
+            		j2.plantarse();
+            	}
+            }
+            
+            if(j1Sigue) {
+            	j1.darCarta(baraja.repartir());
+            }
+            
+            if(j2Sigue) {
+            	j2.darCarta(baraja.repartir());
+            }
+            
+            numRonda++; 
+		}
+		
+		mostrarGanador();
+	}
+	
+	private boolean continuar() { 
+		boolean sigue;
+		
+		if(j1.pasado() || j2.pasado()) {
+			sigue= false;
+			
+		} else if(j1.isPlantado() && j2.isPlantado()){
+			sigue= false; 
+			
+		} else {
+			sigue= true; 
+			
+		}
+		
+		return sigue; 
+	}
+	
+	private void mostrarGanador() {
+		int p1 = j1.calcularPuntuacion();
+        int p2 = j2.calcularPuntuacion();
+        
+		cs.escribirMensaje("\n--- RESULTADO FINAL ---"); 
+		cs.escribirMensaje(j1);
+		cs.escribirMensaje(j2);
+
+        if (j1.pasado() && j2.pasado()) {
+        	cs.escribirMensaje("EMPATE: Ambos se han pasado.");
+        } else if (j1.pasado()) {
+        	cs.escribirMensaje("GANADOR: " + j2.getNombre());
+        } else if (j2.pasado()) {
+        	cs.escribirMensaje("GANADOR: " + j1.getNombre());
+        } else if (p1 > p2) {
+        	cs.escribirMensaje("GANADOR: " + j1.getNombre());
+        } else if (p2 > p1) {
+        	cs.escribirMensaje("GANADOR: " + j2.getNombre()); 
+        } else {
+        	cs.escribirMensaje("EMPATE por puntos."); 
+        }
+	}
 }
