@@ -12,7 +12,10 @@ public class GestorPartida {
         this.baraja = new Baraja();
     }
 	
-	public void partida() {
+	/**
+	 * Metodo principal que gestinona todo el juego
+	 */
+	public void iniciar() { 
 		int numCartas;
 		int numRonda= 1;
 		boolean j1Sigue= false;
@@ -30,6 +33,7 @@ public class GestorPartida {
 			j2.darCarta(baraja.repartir());
 		}
 		
+		//Bucle para cada ronda
 		while(continuar()) {
 			cs.escribirMensaje("\n--- RONDA " + numRonda + " ---");
 			cs.escribirMensaje(j1);
@@ -69,6 +73,10 @@ public class GestorPartida {
 		mostrarGanador();
 	}
 	
+	/**
+	 * Determina si la partida puede continuar
+	 * @return sigue True si continua o false si no
+	 */
 	private boolean continuar() { 
 		boolean sigue;
 		
@@ -86,6 +94,9 @@ public class GestorPartida {
 		return sigue; 
 	}
 	
+	/**
+	 * Muestra el ganador de la partida segun la puntuación de cada uno
+	 */
 	private void mostrarGanador() {
 		int p1 = j1.calcularPuntuacion();
         int p2 = j2.calcularPuntuacion();
