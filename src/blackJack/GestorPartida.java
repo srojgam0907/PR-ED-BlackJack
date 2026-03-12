@@ -46,7 +46,8 @@ public class GestorPartida {
 			cs.escribirMensaje("\n--- RONDA " + numRonda + " ---");
 			cs.escribirMensaje(j1);
 			cs.escribirMensaje(j2); 
-            System.out.println();
+			cs.escribirMensaje("");
+            cs.escribirMensaje("------------------------------------------------------");
             
             if(!j1.isPlantado() && !j1.pasado()) {
             	opcion= cs.leerOpcion(mensaje1, "C", "P");
@@ -114,6 +115,8 @@ public class GestorPartida {
 		cs.escribirMensaje(j1);
 		cs.escribirMensaje(j2);
 
+		cs.escribirMensaje("");
+		
         if (j1.pasado() && j2.pasado()) {
         	cs.escribirMensaje("EMPATE: Ambos se han pasado.");
         } else if (j1.pasado()) {
