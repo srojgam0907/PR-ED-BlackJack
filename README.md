@@ -54,7 +54,7 @@ El proyecto está desarrollado siguiendo **POO** y aplicando principios básicos
 
 Se ha diseñado también un **diagrama UML**, incluido en el repositorio en formato PDF. Es el siguiente:
 
-![Esquema UML](uml_blackjack.pdf)
+![Esquema UML](uml_blackjack.png)
 
 ---
 
