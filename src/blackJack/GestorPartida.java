@@ -43,7 +43,7 @@ public class GestorPartida {
 			j1Sigue= false;
 			j2Sigue= false;
 			
-			cs.escribirMensaje("\n--- RONDA " + numRonda + " ---");
+			cs.escribirResaltado("\n--- RONDA " + numRonda + " ---", cs.AMARILLO);
 			cs.escribirMensaje(j1);
 			cs.escribirMensaje(j2); 
 			cs.escribirMensaje("");
@@ -111,24 +111,24 @@ public class GestorPartida {
 		int p1 = j1.calcularPuntuacion();
         int p2 = j2.calcularPuntuacion();
         
-		cs.escribirMensaje("\n--- RESULTADO FINAL ---"); 
+		cs.escribirResaltado("\n--- RESULTADO FINAL ---", cs.AMARILLO); 
 		cs.escribirMensaje(j1);
 		cs.escribirMensaje(j2);
 
 		cs.escribirMensaje("");
 		
         if (j1.pasado() && j2.pasado()) {
-        	cs.escribirMensaje("EMPATE: Ambos se han pasado.");
+        	cs.escribirResaltado("EMPATE: Ambos se han pasado.", cs.ROJO);
         } else if (j1.pasado()) {
-        	cs.escribirMensaje("GANADOR: " + j2.getNombre());
+        	cs.escribirResaltado("GANADOR: " + j2.getNombre(), cs.VERDE);
         } else if (j2.pasado()) {
-        	cs.escribirMensaje("GANADOR: " + j1.getNombre());
+        	cs.escribirResaltado("GANADOR: " + j1.getNombre(), cs.VERDE);
         } else if (p1 > p2) {
-        	cs.escribirMensaje("GANADOR: " + j1.getNombre());
+        	cs.escribirResaltado("GANADOR: " + j1.getNombre(), cs.VERDE);
         } else if (p2 > p1) {
-        	cs.escribirMensaje("GANADOR: " + j2.getNombre()); 
+        	cs.escribirResaltado("GANADOR: " + j2.getNombre(), cs.VERDE); 
         } else {
-        	cs.escribirMensaje("EMPATE por puntos."); 
+        	cs.escribirResaltado("EMPATE por puntos.", cs.ROJO_CLARO);  
         }
 	}
 }
