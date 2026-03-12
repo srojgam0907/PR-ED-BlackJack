@@ -18,8 +18,8 @@ public class GestorPartida {
 	public void iniciar() { 
 		int numCartas;
 		int numRonda= 1;
-		boolean j1Sigue= false;
-		boolean j2Sigue= false;
+		boolean j1Sigue;
+		boolean j2Sigue; 
 		String opcion;
 		String mensaje1;
 		String mensaje2;
@@ -29,6 +29,7 @@ public class GestorPartida {
 		
 		mensaje1= j1.getNombre() + ", ¿Quieres carta (C) o quieres plantarte (P)";
 		mensaje2= j2.getNombre() + ", ¿Quieres carta (C) o quieres plantarte (P)";
+		
 		numCartas= cs.leerEntero("¿Cuantás cartas queréis para empezar? (1 o 2)", 1, 2);
 		baraja.barajar(); 
 		
@@ -39,6 +40,9 @@ public class GestorPartida {
 		
 		//Bucle para cada ronda
 		while(continuar()) {
+			j1Sigue= false;
+			j2Sigue= false;
+			
 			cs.escribirMensaje("\n--- RONDA " + numRonda + " ---");
 			cs.escribirMensaje(j1);
 			cs.escribirMensaje(j2); 
