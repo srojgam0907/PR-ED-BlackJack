@@ -54,7 +54,7 @@ public class Jugador {
 	/**
 	 * Calcula la puntuación de las cartas del jugador
 	 * teniendo en cuenta los Ases. Si el jugador se pasa
-	 * de 21 y tiene algún AS, este pasa de valer 1 a valer 11
+	 * de 21 y tiene algún AS, este pasa de valer 11 a valer 1
 	 * @return total La puntacion del jugador
 	 */
 	public int calcularPuntuacion() {
