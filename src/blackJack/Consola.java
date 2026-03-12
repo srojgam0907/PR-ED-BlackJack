@@ -76,19 +76,17 @@ public class Consola {
      */
     public String leerOpcion(String mensaje, String... opcionesValidas) {
     	String entrada;
-    	boolean error= false;
+    	boolean error;
     	
         do {
+        	error= true;
             escribirMensaje(mensaje);
             entrada = kb.nextLine().trim().toUpperCase();
             
-            for (String opcion : opcionesValidas) {
-                if (entrada.equals(opcion.toUpperCase())) {
+            for (int i=0; i< opcionesValidas.length && error; i++) {
+                if (entrada.equals(opcionesValidas[i].toUpperCase())) {
                     error= false;
                     
-                } else {
-                	error= true;
-                	
                 }
             }
             
